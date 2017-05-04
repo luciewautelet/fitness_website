@@ -1,0 +1,19 @@
+<% provide(:title, @membership.mtype)%>
+<% content_for :head do%>
+<h1><%=h @membership.mtype %></h1>
+<%end%>
+<% content_for :cont do %>
+<h2><%=h @membership.price %>€</h2>
+
+<blockquote>
+    Advantages:
+<%=h @membership.description %>
+</blockquote>
+
+<!--<p>Created: <i><!--%= time_ago_in_words(@membership.created_at) %> ago</i></p>-->
+
+<% if logged_in? %>
+    <%= link_to 'Edit', :action => 'edit', :id => @membership.id %> |
+<% end %>
+<%= link_to 'Back', :action => nil %>
+<%end%>

@@ -1,0 +1,23 @@
+<% provide(:title, 'add a membership')%>
+<% content_for :head do %>
+<h1>New membership</h1>
+<%end%>
+<!--%= error_messages_for :membership %-->
+<% content_for :cont do %>
+<%= form_for(@membership, :url => {:action => 'create'}) do |f| %>
+ <p>
+    Title: <%= f.text_field 'mtype' %>
+  </p>
+  <p>
+    Price: <%= f.number_field(:price, in: 1.0..150.0, step: 0.5) %>
+  </p>
+  <p>
+    Description: <%= f.text_area 'description' %>
+  </p>
+  <p>
+    <%= f.submit "Create", class: "btn btn-primary" %>
+  </p>
+<% end %>
+
+<%= link_to 'Back', :action => nil %>
+<%end%>

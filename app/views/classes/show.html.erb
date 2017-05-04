@@ -1,0 +1,14 @@
+<h1><%=h @classe.ctype %></h1>
+<h2><%=h @instructor.name %></h2>
+
+<blockquote>
+    Classe's description:
+<%=h @classe.description %>
+</blockquote>
+
+<p>When?: <i><%= @classe.date.to_time.strftime('%A, %d %b %Y %l:%M %p') %></i></p>
+
+<% if logged_in? %>
+    <%= link_to 'Edit', :action => 'edit', :id => @classe.id %> |
+<% end %>
+<%= link_to 'Back', :action => nil %>

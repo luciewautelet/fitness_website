@@ -1,0 +1,16 @@
+<% provide(:title, 'Home') %>
+<% content_for :head do %>
+<h1>Welcome</h1>
+<!--		<h1>@content.title</h1>
+-->
+<%end%>
+	 
+<%= link_to image_tag("rails.png", alt: "Rails logo", size:"100"), 'http://rubyonrails.org/' %>
+<%= image_tag asset_path("rails.png") %>
+<img src="home_image.png"/>
+
+<% content_for :desc do %>
+<p>Come work your body from monday to Saturday in our center opened 24h/24h</p>
+<%end%>
+<h2>hello</h2>
+

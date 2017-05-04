@@ -1,0 +1,27 @@
+<% provide(:title, 'add class')%>
+<% content_for :head do %>
+<h1>New class</h1>
+<%end%>
+
+<% content_for :cont do %>
+<%= form_for(@classe, :url => {:action => 'create'}) do |f| %>
+  <p>
+    Classe: <%= f.text_field 'ctype' %>
+  </p>
+  <p>
+    Starting (first classe of severals): <%= f.check_box 'start' %>
+  </p>
+  <p>
+    Date: <%= f.datetime_select :date %>
+  </p>
+  <p>
+    Description: <%= f.text_area 'description' %>
+  </p>
+    <% f.number_field :instructor_id, value: current_admin.id %>
+  <p>
+    <%= f.submit "Save" , class: "btn btn-primary" %>
+  </p>
+<% end %>
+
+<%= link_to 'Back', :action => nil %>
+<%end%>

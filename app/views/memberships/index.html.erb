@@ -1,0 +1,40 @@
+<% provide(:title, 'Memberships') %> 
+<% content_for :head do%>
+<h1>Memberships</h1>
+<%end%>
+<% content_for :desc do %>
+<p>Below the list of all the memberships available in our fitness center</p>
+<%end%>
+<% content_for :cont do %>
+<table class="table_product">
+  <tr>
+    <th>Type</th>
+    <th>Price</th>
+    <th>Description</th>
+    <% if logged_in? %>
+    <th>Edit</th>
+    <th>Delete</th>
+    <%end%>
+  </tr>
+  <tr>
+  </tr>
+
+<% @memberships.each do |m| %>
+  <tr>
+    <td><%= link_to m.mtype, :action => 'show', :id => m.id %></td>
+    <td><%= m.price %></td>
+    <td><%= m.description%></td>
+    <% if logged_in? %>
+        <td> <%= link_to 'Edit', :action => 'edit', :id => m.id %></td>
+        <td><%= link_to 'Delete', m, :confirm => 'Are you sure?', :method => :delete %></td>
+    <% end %>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<% if logged_in? %>
+    <%= link_to 'Add a membership', :action => 'new' %>
+<% end %>
+<%end%>

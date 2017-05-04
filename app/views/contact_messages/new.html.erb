@@ -1,0 +1,29 @@
+<% provide(:title, 'contact')%>
+<% content_for :head do %>
+<h1>New message</h1>
+<%end%>
+<!--%= error_messages_for :contact_message %-->
+
+<% content_for :cont do %>
+
+<%= form_for(@contact_message, :url => {:action => 'create'}) do |f| %>
+ <p>
+    Name: <%= f.text_field(:name) %>
+  </p>
+  <p>
+    Phone number: <%= f.telephone_field(:phone) %>
+  </p>
+  <p>
+    Email Address: <%= f.email_field(:email) %>
+  </p>
+  <p>
+    Message: <%= f.text_area :message_content, size: "60x5" %>
+  </p>
+  <p>
+    <%= f.submit "Create", class: "btn btn-primary" %>
+  </p>
+<% end %>
+
+<%= link_to 'Back', :action => nil %>
+
+<%end%>

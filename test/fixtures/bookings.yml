@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  class_type: MyString
+  cdate: 2017-04-22 13:59:11
+  name: MyString
+  phone: 1
+  email: MyString
+  member: false
+  membership_id: 1
+
+two:
+  class_type: MyString
+  cdate: 2017-04-22 13:59:11
+  name: MyString
+  phone: 1
+  email: MyString
+  member: false
+  membership_id: 1

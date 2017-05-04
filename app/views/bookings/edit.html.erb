@@ -1,0 +1,29 @@
+<h1>Edit booking "<%= @booking.ctype %>"</h1>
+
+<%= form_for(@booking, :url => {:action => 'update', :id => @booking.id}) do |f| %>
+  <p>
+    Booking: <%= f.text_field 'classe_type' %>
+  </p>
+  <p>
+    Date: <%= f.datetime_select :cdate %>
+  </p>
+  <p>
+    Name: <%= f.text_field 'name' %>
+  </p>
+  <p>
+    Phone number: <%= f.telephone_field(:phone) %>
+  </p>
+  <p>
+    Email Address: <%= f.email_field(:email) %>
+  </p>
+  <p>
+    Member?: <%= f.check_box 'member' %>
+  </p>
+    Membership ID <%= f.text_field :membership_id %>
+  <p>
+    <%= f.submit "Edit" , booking: "btn btn-primary" %>
+  </p>
+<% end %>
+
+<%= link_to 'Back', :action => nil %>
+<%end%>

@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  ctype: MyString
+  start: false
+  date: 2017-04-22 13:11:02
+  description: MyString
+  instructor_id: 1
+
+two:
+  ctype: MyString
+  start: false
+  date: 2017-04-22 13:11:02
+  description: MyString
+  instructor_id: 1

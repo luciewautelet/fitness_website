@@ -1,0 +1,22 @@
+<header class="navbar navbar-fixed-top navbar-inverse">
+	<div class="container">
+		<%= link_to "fitness center", root_path, id: "logo" %>
+		<nav>
+			<ul class="nav navbar-nav navbar-right">
+				<li><%= link_to "Home", root_path %></li>
+				<li><%= link_to "Memberships", memberships_path %></li>
+				<li><%= link_to "Classes", classes_path %></li>
+				<li><%= link_to "Contact", contact_messages_path %></li>
+				<% if logged_in? %>
+				    <% if current_admin.admin_all %>
+    				    <li><%= link_to "Images", images_path %></li>
+    				    <li><%= link_to "Bookings", bookings_path %></li>
+    				<% end %>
+    				<li><%= link_to "Log out", logout_path, method: "delete" %></li>
+				<% else %>
+				    <li><%= link_to "Log in as instructor", login_path %></li>
+				<% end %>
+			</ul>
+		</nav>
+	</div>
+</header>

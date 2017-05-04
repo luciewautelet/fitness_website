@@ -1,0 +1,21 @@
+<h1>Edit classe "<%= @classe.ctype %>"</h1>
+
+<%= form_for(@classe, :url => {:action => 'update', :id => @classe.id}) do |f| %>
+  <p>
+    Classe: <%= f.text_field 'ctype' %>
+  </p>
+  <p>
+    Starting (first classe of severals): <%= f.check_box 'start' %>
+  </p>
+  <p>
+    Date: <%= f.datetime_select :date %>
+  </p>
+  <p>
+    Description: <%= f.text_area 'description' %>
+  </p>
+  <p>
+    <%= f.submit "Save" , class: "btn btn-primary" %>
+  </p>
+<% end %>
+
+<%= link_to 'Back', :action => nil %>

@@ -1,0 +1,23 @@
+<% provide(:title, 'Sign up') %>
+<%content_for :head do %>
+<h1>Sign up as admin</h1>
+<%end%>
+
+<% content_for :cont do %>
+<div class="row">
+    <div class="col-md-6 col-md-offset-3">
+        <%= form_for(@admin) do |f| %>
+            <%= f.label :name %>
+            <%= f.text_field :name %>
+            
+            <%= f.label :password %>
+            <%= f.password_field :password %>
+            
+            <%= f.label :password_confirmation, "Confirmation" %>
+            <%= f.password_field :password_confirmation %>
+            
+            <%= f.submit "Create my account", class: "btn btn-primary" %>
+        <% end %>
+    </div>
+</div>
+<%end%>

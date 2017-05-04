@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  mtype: 
+  price: 1.5
+  description: MyString
+
+two:
+  mtype: 
+  price: 1.5
+  description: MyString

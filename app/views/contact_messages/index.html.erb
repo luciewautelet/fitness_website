@@ -1,0 +1,27 @@
+<% provide(:title, "message list") %>
+<% content_for  :head do%>
+<h1>Listing messages</h1>
+<%end%>
+
+<%content_for :cont do %>
+<table>
+  <tr>
+  </tr>
+
+<% @contact_messages.each do |m| %>
+  <tr>
+    <td>From: <%= link_to m.name, :action => 'show', :id => m.id %></td>
+    
+    <% if logged_in? %>
+        <td> or <%= link_to 'Delete', m, :confirm => 'Are you sure?', :method => :delete %> </td>
+    <% end %>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<% if logged_in? %>
+    <%= link_to 'Add a message', :action => 'new' %>
+<% end %>
+<%end%>

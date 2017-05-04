@@ -1,0 +1,48 @@
+<% provide(:title, "bookings") %>
+<% content_for :head do %>
+<h1>Listing bookings</h1>
+<%end%>
+
+<% content_for :cont do %>
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th>Type</th>
+    <th>Time</th>
+    <th>Name</th>
+    <th>Phone</th>
+    <th>Email</th>
+    <th>Membership ID</th>
+    <%if logged_in? %>
+      <th>Delete</th>
+    <%end%>
+  </tr>
+  </thead>
+
+  <% @bookings.each do |b| %>
+    <tbody>
+    <tr>
+      <td><%= b.classe_type %></td>
+      <td><%=b.cdate.to_time.strftime("%A, %l:%M %p")%></td>
+      <td><%=b.name%></td>
+      <td><%=b.phone%></td>
+      <td><%=b.email%></td>
+      <% if b.member %>
+        <td><%=b.membership_id%></td>
+      <% else %>
+        <td>Not a member</td>
+      <% end %>
+      <% if logged_in? %>
+          <td><%= link_to 'Delete', b, :confirm => 'Are you sure?', :method => :delete %></td>
+      <% end %>
+    </tr>
+    </tbody>
+  <% end %>
+</table>
+
+<br />
+
+<% if logged_in? %>
+    <%= link_to 'Add a fake booking', :action => 'new' %>
+<% end %>
+<%end%>
