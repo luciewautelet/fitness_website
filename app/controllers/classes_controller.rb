@@ -1,11 +1,41 @@
 class ClassesController < ApplicationController
     def index
+        @days = []
+        @days[0] = []
+        @days[0][0] = "monday"
+        @days[1] = []
+        @days[1][0] = "tuesday"
+        @days[2] = []
+        @days[2][0] = "wednesday"
+        @days[3] = []
+        @days[3][0] = "thursday"
+        @days[4] = []
+        @days[4][0] = "friday"
+        @days[5] = []
+        @days[5][0] = "saturday";
+        @days[6] = []
+        @days[6][0] = "sunday";
+        @class_by_day = []
         @classes = Classe.all
+    @classes = @classes.sort_by { |cl| cl.date.to_time.strftime("%l").to_i}
+        i = 0
+        @days.each do |da|
+            @class_by_day[i] = []
+           @days[i][1] = 0
+            @classes.each do |cl|
+                if da[0] == cl.date.to_time.strftime("%A").downcase
+                    @days[i][1] += 1
+                end
+            end
+            i += 1
+        end
+        
     end
     
     def show
         @classe = Classe.find params[:id]
         @instructor = Admin.find_by(@classe.instructor_id)
+        @bookings = Booking.find_by_classe_type(@classe.ctype)
     end
     
     def new

@@ -1,3 +1,8 @@
+<% provide(:title, 'classe') %>
+<% content_for :head do %>
+<h1>Classe</h1>
+<%end%>
+<% content_for :desc do %>
 <h1><%=h @classe.ctype %></h1>
 <h2><%=h @instructor.name %></h2>
 
@@ -12,3 +17,4 @@
     <%= link_to 'Edit', :action => 'edit', :id => @classe.id %> |
 <% end %>
 <%= link_to 'Back', :action => nil %>
+<%end%>

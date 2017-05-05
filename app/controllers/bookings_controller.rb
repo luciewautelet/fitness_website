@@ -16,7 +16,7 @@ class BookingsController < ApplicationController
     def create
         @booking = Booking.new(booking_params)
         if @booking.save
-            redirect_to  root_path
+            redirect_to classes_path
         else
             flash[:error] = 'Failed to edit booking!'
             render 'new'
@@ -41,7 +41,7 @@ class BookingsController < ApplicationController
         @booking = Booking.find params[:id]
         if @booking.delete
             flash[:notice] = 'Booking deleted!'
-            redirect_to root_path
+            redirect_to bookings_path
         else
             flash[:error] = 'Failed to delete booking!'
             render :destroy
@@ -51,14 +51,14 @@ class BookingsController < ApplicationController
     private
         def booking_params
             if params[:booking][:member] == 0
-                params[:booking][:booking_id] = -1
+                params[:booking][:membership_id] = -1
             end
             print("------------------")
             print(params[:booking][:member])
-            print(params[:booking][:booking_id])
+            print(params[:booking][:membership_id])
             print("------------------")
             params.require(:booking).permit(:classe_type, :cdate, :name, :phone,
-                    :email, :member, :booking_id)
+                    :email, :member, :membership_id)
         end
         
         def logged_in_admin

@@ -4,31 +4,44 @@
 <%end%>
 
 <% content_for :cont do %>
+
+<br />
+
+<% @days.each do |d| %>
+<%if d[1] > 0%>
 <table class="table_product">
+  <caption><%= d[0] %></caption>
   <tr>
+        <th>Time</th>
     <th>Type</th>
     <th>Description</th>
-    <th>Time</th>
+
     <%if logged_in? %>
     <th>Edit</th>
     <th>Delete</th>
     <%end%>
   </tr>
-
-<% @classes.each do |c| %>
+  <% @classes.each do |c| %>
+  <% if (c.date.to_time.strftime("%A").downcase== d[0]) %>
   <tr>
+        <td><%=c.date.to_time.strftime("%l:%M %p")%></td>
     <td><%= link_to c.ctype, :action => 'show', :id => c.id %></td>
     <td><%=c.description%></td>
-    <td><%=c.date.to_time.strftime("%A, %l:%M %p")%></td>
+
     <% if logged_in? %>
         <td> <%= link_to 'Edit', :action => 'edit', :id => c.id %></td>
         <td><%= link_to 'Delete', c, :confirm => 'Are you sure?', :method => :delete %></td>
     <% end %>
-  </tr>
-<% end %>
+      </tr>
+    <%end%>
+    <%end%>
 </table>
+<%end%>
+<%end%>
 
-<br />
+
+
+<br>
 
 <% if logged_in? %>
     <%= link_to 'Add a classe', :action => 'new' %>

@@ -24,9 +24,11 @@
   <p>
     Are you a member?: <%= f.check_box 'member' %>
   </p>
-    Membership ID <%= f.text_field :membership_id %>
   <p>
-    <%= f.submit "Save" , booking: "btn btn-primary" %>
+    Membership ID <%= f.number_field :membership_id %>
+  </p>
+  <p>
+    <%= f.submit "Save", class: "btn btn-primary" %>
   </p>
 <% end %>
 

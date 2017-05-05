@@ -2,7 +2,7 @@
 <% content_for :head do %>
 <h1>New membership</h1>
 <%end%>
-<!--%= error_messages_for :membership %-->
+
 <% content_for :cont do %>
 <%= form_for(@membership, :url => {:action => 'create'}) do |f| %>
  <p>

@@ -10,6 +10,9 @@ Rails.application.routes.draw do
 
   get 'new_contact_message' => 'contact_messages#new'
   
+  # get "/pages/:page" => "pages#show"
+  # match '/:id' => 'pages#show'
+  
   resources :admins, only: [:new, :create]
   resources :bookings
   resources :classes

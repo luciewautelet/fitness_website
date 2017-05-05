@@ -14,6 +14,7 @@
     <th>Email</th>
     <th>Membership ID</th>
     <%if logged_in? %>
+      <th>Edit</th>
       <th>Delete</th>
     <%end%>
   </tr>
@@ -33,6 +34,7 @@
         <td>Not a member</td>
       <% end %>
       <% if logged_in? %>
+        <td> <%= link_to 'Edit', :action => 'edit', :id => b.id %></td>
           <td><%= link_to 'Delete', b, :confirm => 'Are you sure?', :method => :delete %></td>
       <% end %>
     </tr>

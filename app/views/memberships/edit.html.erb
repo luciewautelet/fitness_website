@@ -1,4 +1,9 @@
+<% provide(:title, 'Edit membership')%>
+<% content_for :head do %>
 <h1>Edit membership "<%= @membership.mtype %>"</h1>
+<%end%>
+
+<% content_for :cont do %>
 
 <%= form_for(@membership, :url => {:action => 'update', :id => @membership.id}) do |f| %>
   <p>
@@ -11,8 +16,9 @@
     Description: <%= f.text_area 'description' %>
   </p>
   <p>
-    <%= f.submit "Save" , class: "btn btn-primary" %>
+    <%= f.submit "Edit" , class: "btn btn-primary" %>
   </p>
 <% end %>
 
 <%= link_to 'Back', :action => nil %>
+<%end%>

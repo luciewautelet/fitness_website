@@ -13,9 +13,3 @@
  *= require_tree .
  *= require_self
  */
-
-.table_product, th{
-    text-align:center;
-    border-collapse: separate;
-    border-spacing : 10px;
-}

@@ -1,5 +1,9 @@
+<% provide(:title, "edit class") %>
+<% content_for :head do%>
 <h1>Edit classe "<%= @classe.ctype %>"</h1>
+<%end%>
 
+<% content_for :cont do %>
 <%= form_for(@classe, :url => {:action => 'update', :id => @classe.id}) do |f| %>
   <p>
     Classe: <%= f.text_field 'ctype' %>
@@ -18,4 +22,6 @@
   </p>
 <% end %>
 
+<br>
 <%= link_to 'Back', :action => nil %>
+<%end%>

@@ -117,3 +117,23 @@ input, textarea, select, .uneditable-input {
 input {
   height: auto !important;
 }
+
+
+.table_product, th, td{
+    text-align:center;
+    border-collapse: collapse;
+    border-spacing : 10px;
+    padding-right: 15px;
+}
+
+tr{
+//  display : block;
+border-bottom : 2px solid $light-blue;
+}
+
+
+caption {
+    text-align:center;
+    color: black;
+    font-size:45px;
+}

@@ -1,5 +1,9 @@
-<h1>Edit booking "<%= @booking.ctype %>"</h1>
+<% provide(:title, 'Edit booking')%>
+<% content_for :head do %>
+<h1>Edit booking "<%= @booking.classe_type %>"</h1>
+<%end%>
 
+<% content_for :cont do %>
 <%= form_for(@booking, :url => {:action => 'update', :id => @booking.id}) do |f| %>
   <p>
     Booking: <%= f.text_field 'classe_type' %>
@@ -19,9 +23,11 @@
   <p>
     Member?: <%= f.check_box 'member' %>
   </p>
-    Membership ID <%= f.text_field :membership_id %>
   <p>
-    <%= f.submit "Edit" , booking: "btn btn-primary" %>
+    Membership ID <%= f.number_field :membership_id %>
+  </p>
+  <p>
+    <%= f.submit "Edit" , class: "btn btn-primary" %>
   </p>
 <% end %>
 
