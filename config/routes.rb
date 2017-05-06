@@ -9,15 +9,15 @@ Rails.application.routes.draw do
   delete  'logout'  => 'sessions#destroy'
 
   get 'new_contact_message' => 'contact_messages#new'
+  # get 'new_pages' => 'pages#new'
   
   # get "/pages/:page" => "pages#show"
-  # match '/:id' => 'pages#show'
   
   resources :admins, only: [:new, :create]
   resources :bookings
   resources :classes
   resources :memberships
   resources :contact_messages, except: [:edit, :update]
-  resources :images
+  resources :pages
   resources :sessions, only: [:new, :create, :destroy]
 end

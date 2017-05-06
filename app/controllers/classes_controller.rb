@@ -1,5 +1,16 @@
 class ClassesController < ApplicationController
+    def assign
+    end
+    
     def index
+        
+
+        if (params[:date])
+            print params[:date]
+            @today = Date.strptime(params[:date], "%Y-%m-%d")
+        else
+            @today = Date.today
+        end
         @days = []
         @days[0] = []
         @days[0][0] = "monday"
@@ -15,21 +26,42 @@ class ClassesController < ApplicationController
         @days[5][0] = "saturday";
         @days[6] = []
         @days[6][0] = "sunday";
+        
+        
+        i = 1
+        set = false
+        @days.each do |da|
+            if da[0] == @today.strftime("%A").downcase
+                da[1] = @today.strftime("%d")
+                da[2] = @today.strftime("%m")
+                set = true
+            elsif set === false
+                da[1] = ""
+                da[2] = ""
+            else
+                da[1] = (@today + i).strftime("%d")
+                da[2] = (@today + i).strftime("%m")
+                i += 1
+            end
+        end
+        @next = @today + i
+        
+        empty = true;
         @class_by_day = []
         @classes = Classe.all
-    @classes = @classes.sort_by { |cl| cl.date.to_time.strftime("%l").to_i}
+    @classes = @classes.sort_by { |cl| [cl.date.to_time.strftime("%p"),cl.date.to_time.strftime("%l").to_i]}
         i = 0
         @days.each do |da|
             @class_by_day[i] = []
-           @days[i][1] = 0
+           @days[i][3] = 0
             @classes.each do |cl|
-                if da[0] == cl.date.to_time.strftime("%A").downcase
-                    @days[i][1] += 1
+                if da[0] == cl.date.to_time.strftime("%A").downcase && da[1] == cl.date.to_time.strftime("%d") && da[2] == cl.date.to_time.strftime("%m")
+                    @days[i][3] += 1
+                    empty = false;
                 end
             end
             i += 1
         end
-        
     end
     
     def show
@@ -52,6 +84,8 @@ class ClassesController < ApplicationController
             render 'new'
         end
     end
+    
+
     
     def edit
         @classe = Classe.find params[:id]

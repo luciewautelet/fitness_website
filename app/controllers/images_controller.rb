@@ -2,19 +2,19 @@ class ImagesController < ApplicationController
     before_action :logged_in_admin
     
     def index
-        @images = Image.all
+        @images = image.all
     end
     
     def show
-        @image = Image.find params[:id]
+        @image = image.find params[:id]
     end
     
     def new
-        @image = Image.new
+        @image = image.new
     end
     
     def create
-        @image = Image.new(image_params)
+        @image = image.new(image_params)
         if @image.save
             redirect_to images_path
         else
@@ -24,11 +24,11 @@ class ImagesController < ApplicationController
     end
     
     def edit
-        @image = Image.find params[:id]
+        @image = image.find params[:id]
     end
     
     def update
-        @image = Image.find params[:id]
+        @image = image.find params[:id]
         if @image.update_attributes(image_params)
             redirect_to images_path
         else
@@ -38,9 +38,9 @@ class ImagesController < ApplicationController
     end
     
     def destroy
-        @image = Image.find params[:id]
+        @image = image.find params[:id]
         if @image.delete
-            flash[:notice] = 'Image deleted!'
+            flash[:notice] = 'image deleted!'
             redirect_to images_path
         else
             flash[:error] = 'Failed to delete image!'

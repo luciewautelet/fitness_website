@@ -6,15 +6,16 @@
 <% content_for :cont do %>
 
 <br />
-
+<%if !@empty %>
 <% @days.each do |d| %>
-<%if d[1] > 0%>
+<%if d[3] > 0%>
 <table class="table_product">
-  <caption><%= d[0] %></caption>
+  <caption><%= d[0]%> <%=d[1] %>/<%= d[2] %></caption>
   <tr>
         <th>Time</th>
     <th>Type</th>
     <th>Description</th>
+    <th>Start date</th>
 
     <%if logged_in? %>
     <th>Edit</th>
@@ -22,28 +23,35 @@
     <%end%>
   </tr>
   <% @classes.each do |c| %>
-  <% if (c.date.to_time.strftime("%A").downcase== d[0]) %>
+  <% if d[0] == c.date.to_time.strftime("%A").downcase && d[1] == c.date.to_time.strftime("%d") && d[2] == c.date.to_time.strftime("%m")%>
   <tr>
         <td><%=c.date.to_time.strftime("%l:%M %p")%></td>
     <td><%= link_to c.ctype, :action => 'show', :id => c.id %></td>
     <td><%=c.description%></td>
-
+    <td><%= def_class_start c %></td>
     <% if logged_in? %>
         <td> <%= link_to 'Edit', :action => 'edit', :id => c.id %></td>
         <td><%= link_to 'Delete', c, :confirm => 'Are you sure?', :method => :delete %></td>
     <% end %>
-      </tr>
+    </tr>
     <%end%>
     <%end%>
 </table>
 <%end%>
 <%end%>
-
+<%else%>
+<p>Nothing is planned for this week</p>
+<%end%>
 
 
 <br>
-
+<% if (is_today @days) == false%>
+<%= link_to 'previous week', :action => 'index', :date => (get_prev @days) %>
+<%end%>
 <% if logged_in? %>
     <%= link_to 'Add a classe', :action => 'new' %>
 <% end %>
+
+<%= link_to 'Next week', :action => 'index', :date => @next%>
 <%end%>
+<br>
