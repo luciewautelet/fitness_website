@@ -1,8 +1,10 @@
 <% provide(:title, 'Home') %>
 <% content_for :head do %>
-<h1>Welcome</h1>
-<!--		<h1>@content.title</h1>
--->
+<h1><%= @static_pages[:title]%></h1>
+<%end%>
+
+<% content_for :img do %>
+<%= carousel_for(@img)%>
 <%end%>
 	 
 <%= link_to image_tag("rails.png", alt: "Rails logo", size:"100"), 'http://rubyonrails.org/' %>
@@ -10,7 +12,9 @@
 <img src="home_page.png"/>
 
 <% content_for :desc do %>
-<p>Come work your body from monday to Saturday in our center opened 24h/24h</p>
+<p>
+    <%= @static_pages[:description]%>
+</p>
 <%end%>
 <h2>hello</h2>
 

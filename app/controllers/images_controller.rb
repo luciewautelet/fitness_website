@@ -2,19 +2,31 @@ class ImagesController < ApplicationController
     before_action :logged_in_admin
     
     def index
-        @images = image.all
+        @images = Image.all
     end
     
     def show
-        @image = image.find params[:id]
+        @image = Image.find params[:id]
     end
     
     def new
-        @image = image.new
+        @list = StaticPage.all
+        @list += Page.all
+        @image = Image.new
     end
     
     def create
-        @image = image.new(image_params)
+        
+        @image = Image.new(image_params)
+        
+        uploaded_io = params[:image][:filename]
+        File.open(Rails.root.join('app', 'assets', 'images', 
+                                uploaded_io.original_filename), 'wb') do |file|
+                    file.write(uploaded_io.read)
+        end
+        
+        @image.filename = uploaded_io.original_filename
+        
         if @image.save
             redirect_to images_path
         else
@@ -24,11 +36,11 @@ class ImagesController < ApplicationController
     end
     
     def edit
-        @image = image.find params[:id]
+        @image = Image.find params[:id]
     end
     
     def update
-        @image = image.find params[:id]
+        @image = Image.find params[:id]
         if @image.update_attributes(image_params)
             redirect_to images_path
         else
@@ -38,7 +50,7 @@ class ImagesController < ApplicationController
     end
     
     def destroy
-        @image = image.find params[:id]
+        @image = Image.find params[:id]
         if @image.delete
             flash[:notice] = 'image deleted!'
             redirect_to images_path

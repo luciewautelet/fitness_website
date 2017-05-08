@@ -1,4 +1,9 @@
+<% provide(:title, "message") %>
+<% content_for :head do %>
+<h1>Message:</h1>
+<%end%>
 
+<% content_for :cont do %>
 <h1><%=h @contact_message.name %></h1>
 <h2><%=h @contact_message.email %> 
 <%= @contact_message.phone %></h2>
@@ -11,3 +16,4 @@
 <!--<p>Created: <i><!--%= time_ago_in_words(@contact_message.created_at) %> ago</i></p>-->
 
 <%= link_to 'Back', :action => nil %>
+<%end%>

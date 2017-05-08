@@ -1,17 +1,11 @@
 <% provide(:title, 'add booking')%>
 <% content_for :head do %>
-<h1>Booking for classe_type*</h1>
-<h2>all thing_needed* to be replaced to @classe.thing_needed</h2>
+<h1>Booking for <%= @classe.ctype %> </h1>
+<h2>on  <%= @classe.date.strftime('%A %d %B at %H:%M') %></h2>
 <%end%>
 
 <% content_for :cont do %>
 <%= form_for(@booking, :url => {:action => 'create'}) do |f| %>
-  <p>
-    Booking*: <%= f.text_field 'classe_type' %>
-  </p>
-  <p>
-    Date*: <%= f.datetime_select :cdate %>
-  </p>
   <p>
     Name: <%= f.text_field 'name' %>
   </p>

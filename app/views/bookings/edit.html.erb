@@ -5,11 +5,9 @@
 
 <% content_for :cont do %>
 <%= form_for(@booking, :url => {:action => 'update', :id => @booking.id}) do |f| %>
-  <p>
-    Booking: <%= f.text_field 'classe_type' %>
-  </p>
-  <p>
-    Date: <%= f.datetime_select :cdate %>
+<p>
+    Classe :  <%=  @booking.classe_type %>
+    on  <%= @booking.cdate.strftime('%A %d %B at %H:%M') %>
   </p>
   <p>
     Name: <%= f.text_field 'name' %>

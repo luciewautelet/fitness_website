@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   get 'new_contact_message' => 'contact_messages#new'
   # get 'new_pages' => 'pages#new'
   
-  # get "/pages/:page" => "pages#show"
+  get "pages" => "pages#show"
   
   resources :admins, only: [:new, :create]
   resources :bookings
@@ -19,5 +19,7 @@ Rails.application.routes.draw do
   resources :memberships
   resources :contact_messages, except: [:edit, :update]
   resources :pages
+  resources :images
+  resources :static_pages, except: [:show]
   resources :sessions, only: [:new, :create, :destroy]
 end

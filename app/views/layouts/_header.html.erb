@@ -3,6 +3,10 @@
 		<%= link_to "fitness center", root_path, id: "logo" %>
 		<nav>
 			<ul class="nav navbar-nav navbar-right">
+				<% @page = Page.all %>
+				<% @page.each do |p| %>
+				<li><%= link_to p[:title], page_path(id: p[:id])  %></li>
+				<%end%>
 				<li><%= link_to "Home", root_path %></li>
 				<li><%= link_to "Memberships", memberships_path %></li>
 				<li><%= link_to "Classes", classes_path %></li>

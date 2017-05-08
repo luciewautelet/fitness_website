@@ -10,11 +10,18 @@ class BookingsController < ApplicationController
     end
     
     def new
+        @classe = Classe.find_by(params["format"])
         @booking = Booking.new
     end
     
     def create
+        @classe = Classe.find_by(params["format"])
         @booking = Booking.new(booking_params)
+        @booking.classe_type = @classe.ctype
+        @booking.cdate = @classe.date
+        print("????")
+        print(@booking.errors.messages)
+        print(".......")
         if @booking.save
             redirect_to classes_path
         else
@@ -53,12 +60,7 @@ class BookingsController < ApplicationController
             if params[:booking][:member] == 0
                 params[:booking][:membership_id] = -1
             end
-            print("------------------")
-            print(params[:booking][:member])
-            print(params[:booking][:membership_id])
-            print("------------------")
-            params.require(:booking).permit(:classe_type, :cdate, :name, :phone,
-                    :email, :member, :membership_id)
+            params.require(:booking).permit(:name, :phone, :email, :member, :membership_id)
         end
         
         def logged_in_admin

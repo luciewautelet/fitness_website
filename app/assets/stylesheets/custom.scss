@@ -127,9 +127,14 @@ input {
 }
 
 tr{
+  padding-right: 15px;
 border-bottom : 2px solid $light-blue;
 }
 
+img{
+  margin: auto
+  
+}
 
 caption {
     text-align:center;

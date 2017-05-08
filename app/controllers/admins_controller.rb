@@ -12,19 +12,21 @@ class AdminsController < ApplicationController
     
     def create
         @admin = Admin.new(admin_params)
+        if @admin.admin_all == nil
+            @admin.admin_all = false
+        end
         if @admin.save
-            print "HERE AFTER SAVE"
             log_in(@admin)
             redirect_to  root_path
         else
-            print "HERE BEFORE RENDER NEW"
             render 'new'
         end
     end
     
     private
         def admin_params
-            params.require(:admin).permit(:name, :password, :password_confirmation)
+            params.require(:admin).permit(:name, :password, :password_confirmation,
+                                            :admin_all)
         end
     
         def logged_in_admin

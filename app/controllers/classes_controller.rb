@@ -3,7 +3,15 @@ class ClassesController < ApplicationController
     end
     
     def index
-        
+        @cl = StaticPage.where("LOWER(title) = ?", "classes")
+        @page = @cl[0]
+        if @pages
+            @images = Image.select("filename").where("LOWER(gallery) = ?", @page[:gallery])
+            @img = []
+            @images.each do |i|
+                @img.push(i[:filename])
+            end
+        end
 
         if (params[:date])
             print params[:date]
@@ -49,7 +57,7 @@ class ClassesController < ApplicationController
         empty = true;
         @class_by_day = []
         @classes = Classe.all
-    @classes = @classes.sort_by { |cl| [cl.date.to_time.strftime("%p"),cl.date.to_time.strftime("%l").to_i]}
+        @classes = @classes.sort_by { |cl| [cl.date.to_time.strftime("%p"),cl.date.to_time.strftime("%l").to_i]}
         i = 0
         @days.each do |da|
             @class_by_day[i] = []
@@ -85,8 +93,6 @@ class ClassesController < ApplicationController
         end
     end
     
-
-    
     def edit
         @classe = Classe.find params[:id]
     end
@@ -116,7 +122,5 @@ class ClassesController < ApplicationController
         def classe_params
             params.require(:classe).permit(:ctype, :start, :date, :description,
                                     :instructor_id)
-                                    #, "date(1i)", "date(2i)",
-                                    # "date(3i)", "date(4i)", "date(5i)"
         end
 end

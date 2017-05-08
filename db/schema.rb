@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170505095342) do
+ActiveRecord::Schema.define(version: 20170506165537) do
 
   create_table "admins", force: :cascade do |t|
     t.string   "name"
@@ -83,6 +83,14 @@ ActiveRecord::Schema.define(version: 20170505095342) do
     t.string   "description"
     t.string   "gallery"
     t.string   "content"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  create_table "static_pages", force: :cascade do |t|
+    t.string   "title"
+    t.string   "gallery"
+    t.string   "description"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end

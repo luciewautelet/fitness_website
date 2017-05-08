@@ -1,6 +1,17 @@
 class MembershipsController < ApplicationController
+   # include CarouselHelper
+    
     def index
         @memberships = Membership.all
+        @cl = StaticPage.where("LOWER(title) = ?", "memberships")
+        @page = @cl[0]
+        if @pages
+        @images = Image.select("filename").where("LOWER(gallery) = ?", @page[:gallery])
+        @img = []
+        @images.each do |i|
+            @img.push(i[:filename])
+        end
+    end
     end
     
     def show

@@ -1,9 +1,8 @@
 <% provide(:title, 'classe') %>
 <% content_for :head do %>
-<h1>Classe</h1>
+<h1><%=h @classe.ctype %></h1>
 <%end%>
 <% content_for :desc do %>
-<h1><%=h @classe.ctype %></h1>
 <h2><%=h @instructor.name %></h2>
 
 <blockquote>
@@ -12,6 +11,8 @@
 </blockquote>
 
 <p>When?: <i><%= @classe.date.to_time.strftime('%A, %d %b %Y %l:%M %p') %></i></p>
+
+<p><%= link_to 'Book it', new_booking_path(@classe.id) %></p>
 
 <% if logged_in? %>
     <%= link_to 'Edit', :action => 'edit', :id => @classe.id %> |

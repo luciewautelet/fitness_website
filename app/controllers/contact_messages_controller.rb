@@ -4,6 +4,16 @@ class ContactMessagesController < ApplicationController
             redirect_to new_contact_message_path
         end
         @contact_messages = ContactMessage.all
+        @cl = StaticPage.where("LOWER(title) = ?", "contact")
+        @page = @cl[0]
+        if @pages
+        @images = Image.select("filename").where("LOWER(gallery) = ?", @page[:gallery])
+        @img = []
+        @images.each do |i|
+            @img.push(i[:filename])
+        end
+    end
+        
     end
     
     def show
