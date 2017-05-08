@@ -1,5 +1,5 @@
 <% provide(:title, "message list") %>
-<% content_for  :head do%>
+<% content_for :head do%>
 <h1>
   <% if @page %>
   <% @page[:title]%>
@@ -28,8 +28,8 @@
   <tr>
     <td>From: <%= link_to m.name, :action => 'show', :id => m.id %></td>
     
-    <% if logged_in? %>
-        <td> or <%= link_to 'Delete', m, :confirm => 'Are you sure?', :method => :delete %> </td>
+    <% if website_admin? %>
+        <td> <%= link_to 'Delete', m, :confirm => 'Are you sure?', :method => :delete %> </td>
     <% end %>
   </tr>
 <% end %>

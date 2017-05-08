@@ -1,17 +1,17 @@
 class MembershipsController < ApplicationController
-   # include CarouselHelper
+    before_action :logged_in_admin, except: [:index]
     
     def index
         @memberships = Membership.all
         @cl = StaticPage.where("LOWER(title) = ?", "memberships")
         @page = @cl[0]
-        if @pages
-        @images = Image.select("filename").where("LOWER(gallery) = ?", @page[:gallery])
-        @img = []
-        @images.each do |i|
-            @img.push(i[:filename])
+            if @pages
+            @images = Image.select("filename").where("LOWER(gallery) = ?", @page[:gallery])
+            @img = []
+            @images.each do |i|
+                @img.push(i[:filename])
+            end
         end
-    end
     end
     
     def show
@@ -60,5 +60,13 @@ class MembershipsController < ApplicationController
     private
         def membership_params
             params.require(:membership).permit(:mtype, :price, :description)
+        end
+        
+        def logged_in_admin
+            unless website_admin?
+                store_location
+                flash[:danger] = "Please log in as website admin."
+                redirect_to login_url
+            end
         end
 end

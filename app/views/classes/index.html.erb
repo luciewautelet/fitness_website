@@ -46,7 +46,7 @@
     <td><%= link_to c.ctype, :action => 'show', :id => c.id %></td>
     <td><%=c.description%></td>
     <td><%= def_class_start c %></td>
-    <% if logged_in? %>
+    <% if website_admin? %>
         <td> <%= link_to 'Edit', :action => 'edit', :id => c.id %></td>
         <td><%= link_to 'Delete', c, :confirm => 'Are you sure?', :method => :delete %></td>
     <% end %>

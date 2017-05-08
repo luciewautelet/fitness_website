@@ -1,5 +1,5 @@
 class StaticPagesController < ApplicationController
-    before_action :logged_in_admin
+    before_action :logged_in_admin, only: [:create, :update, :destroy]
     
     def home
         @static = StaticPage.where("LOWER(title) = ?", "home")
@@ -32,11 +32,6 @@ class StaticPagesController < ApplicationController
     def create
         @static_page = StaticPage.new(static_page_params)
         @static_page.gallery = @static_page.title
-        print("_____")
-        print(@static_page.title)
-        print(@static_page.gallery)
-        print(@static_page.description)
-        print("_____")
         if @static_page.save
             # render template: "#{params[:title]}/index.html.erb"
             redirect_to root_path
@@ -68,12 +63,13 @@ class StaticPagesController < ApplicationController
         end
         
         def logged_in_admin
-            unless logged_in?
+            unless website_admin?
                 store_location
-                flash[:danger] = "Please log in."
+                flash[:danger] = "Please log in as website admin."
                 redirect_to login_url
             end
         end
+        
         def valid_page?
           File.exist?(Pathname.new(Rails.root + 
             "app/views/#{params[:title]}/index.html.erb"))

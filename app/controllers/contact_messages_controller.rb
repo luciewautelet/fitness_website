@@ -1,4 +1,6 @@
 class ContactMessagesController < ApplicationController
+    before_action :logged_in_admin, only: [:edit, :update, :destroy]
+    
     def index
         if !logged_in?
             redirect_to new_contact_message_path
@@ -7,12 +9,12 @@ class ContactMessagesController < ApplicationController
         @cl = StaticPage.where("LOWER(title) = ?", "contact")
         @page = @cl[0]
         if @pages
-        @images = Image.select("filename").where("LOWER(gallery) = ?", @page[:gallery])
-        @img = []
-        @images.each do |i|
-            @img.push(i[:filename])
+            @images = Image.select("filename").where("LOWER(gallery) = ?", @page[:gallery])
+            @img = []
+            @images.each do |i|
+                @img.push(i[:filename])
+            end
         end
-    end
         
     end
     
@@ -21,6 +23,16 @@ class ContactMessagesController < ApplicationController
     end
     
     def new
+        @cl = StaticPage.where("LOWER(title) = ?", "contact")
+        @page = @cl[0]
+        if @pages
+            @images = Image.select("filename").where("LOWER(gallery) = ?", @page[:gallery])
+            @img = []
+            @images.each do |i|
+                @img.push(i[:filename])
+            end
+        end
+        
         @contact_message = ContactMessage.new
     end
     
@@ -51,5 +63,12 @@ class ContactMessagesController < ApplicationController
                                                     :message_content)
         end
         
+        def logged_in_admin
+            unless website_admin?
+                store_location
+                flash[:danger] = "Please log in as website admin."
+                redirect_to login_url
+            end
+        end
         
 end

@@ -64,9 +64,9 @@ class BookingsController < ApplicationController
         end
         
         def logged_in_admin
-            unless logged_in?
+            unless website_admin?
                 store_location
-                flash[:danger] = "Please log in."
+                flash[:danger] = "Please log in as website admin."
                 redirect_to login_url
             end
         end

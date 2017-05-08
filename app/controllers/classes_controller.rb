@@ -1,4 +1,7 @@
 class ClassesController < ApplicationController
+    before_action :logged_in_admin, only: [:edit, :update, :destroy]
+    before_action :logged_in_instructor, only: [:create]
+    
     def assign
     end
     
@@ -14,7 +17,6 @@ class ClassesController < ApplicationController
         end
 
         if (params[:date])
-            print params[:date]
             @today = Date.strptime(params[:date], "%Y-%m-%d")
         else
             @today = Date.today
@@ -83,9 +85,13 @@ class ClassesController < ApplicationController
     end
     
     def create
+
+        # date = Date.new(params[:classe][:date])
         @classe = Classe.new(classe_params)
         @classe.instructor_id = current_admin.id
-        if @classe.save
+         #       print params[:classe][:date]
+   #     redirect_to  classes_path
+       if  @classe.save
             redirect_to  classes_path
         else
             flash[:error] = 'Failed to edit classe!'
@@ -122,5 +128,21 @@ class ClassesController < ApplicationController
         def classe_params
             params.require(:classe).permit(:ctype, :start, :date, :description,
                                     :instructor_id)
+        end
+        
+        def logged_in_admin
+            unless website_admin?
+                store_location
+                flash[:danger] = "Please log in as website admin."
+                redirect_to login_url
+            end
+        end
+        
+        def logged_in_instructor
+            unless logged_in?
+                store_location
+                flash[:danger] = "Please log in."
+                redirect_to login_url
+            end
         end
 end

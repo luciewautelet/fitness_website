@@ -38,10 +38,10 @@
 
 <% @memberships.each do |m| %>
   <tr>
-    <td><%= link_to m.mtype, :action => 'show', :id => m.id %></td>
+    <td><%= m.mtype %></td>
     <td><%= m.price %></td>
     <td><%= m.description%></td>
-    <% if logged_in? %>
+    <% if website_admin? %>
         <td> <%= link_to 'Edit', :action => 'edit', :id => m.id %></td>
         <td><%= link_to 'Delete', m, :confirm => 'Are you sure?', :method => :delete %></td>
     <% end %>
@@ -50,7 +50,7 @@
 </table>
 
 <br />
-<% if logged_in? %>
+<% if website_admin? %>
     <%= link_to 'Add a membership', :action => 'new' %>
 <% end %>
 <%end%>

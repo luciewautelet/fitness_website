@@ -14,6 +14,10 @@ module SessionsHelper
         @current_admin ||= Admin.find_by(id: session[:admin_id])
     end
     
+    def website_admin?
+        !current_admin.nil? && current_admin.admin_all == true
+    end
+    
     def logged_in?
         !current_admin.nil?
     end

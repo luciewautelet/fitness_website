@@ -33,7 +33,7 @@
       <% else %>
         <td>Not a member</td>
       <% end %>
-      <% if logged_in? %>
+      <% if website_admin? %>
         <td> <%= link_to 'Edit', :action => 'edit', :id => b.id %></td>
           <td><%= link_to 'Delete', b, :confirm => 'Are you sure?', :method => :delete %></td>
       <% end %>
@@ -44,7 +44,7 @@
 
 <br />
 
-<% if logged_in? %>
+<% if website_admin? %>
     <%= link_to 'Add a fake booking', :action => 'new' %>
 <% end %>
 <%end%>
