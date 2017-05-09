@@ -3,6 +3,7 @@
 one:
   ctype: MyString
   start: false
+  first_classeId: 1
   date: 2017-04-22 13:11:02
   description: MyString
   instructor_id: 1
@@ -10,6 +11,7 @@ one:
 two:
   ctype: MyString
   start: false
+  first_classeId: 1
   date: 2017-04-22 13:11:02
   description: MyString
   instructor_id: 1

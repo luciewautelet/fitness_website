@@ -1,7 +1,7 @@
 <% provide(:title, 'add booking')%>
 <% content_for :head do %>
 <h1>Booking for <%= @classe.ctype %> </h1>
-<h2>on  <%= @classe.date.strftime('%A %d %B at %H:%M') %></h2>
+<h2>from  <%= @classe.date.strftime('%A %d %B at %H:%M') %></h2>
 <%end%>
 
 <% content_for :cont do %>

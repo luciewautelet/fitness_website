@@ -18,6 +18,11 @@
     Description: <%= f.text_area 'description' %>
   </p>
   <p>
+    Instructor:
+    <%= f.select :instructor_id, Admin.all.collect { |i|
+    [i.name, i.id]}, {include_blank: true} %>
+  </p>
+  <p>
     <%= f.submit "Save" , class: "btn btn-primary" %>
   </p>
 <% end %>

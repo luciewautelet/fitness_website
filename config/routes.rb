@@ -14,7 +14,9 @@ Rails.application.routes.draw do
   get "pages" => "pages#show"
   # get "pages/:url" => 'pages#show', as: :showbyurl
   
-  resources :admins, only: [:new, :create]
+  get "new_set_classes" => "classes#newSetC"
+  
+  resources :admins, only: [:index, :new, :create, :destroy]
   resources :bookings
   resources :classes
   resources :memberships

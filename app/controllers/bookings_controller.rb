@@ -19,9 +19,7 @@ class BookingsController < ApplicationController
         @booking = Booking.new(booking_params)
         @booking.classe_type = @classe.ctype
         @booking.cdate = @classe.date
-        print("????")
-        print(@booking.errors.messages)
-        print(".......")
+        
         if @booking.save
             redirect_to classes_path
         else

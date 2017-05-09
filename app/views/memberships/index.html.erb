@@ -28,12 +28,10 @@
     <th>Type</th>
     <th>Price</th>
     <th>Description</th>
-    <% if logged_in? %>
-    <th>Edit</th>
-    <th>Delete</th>
+    <% if website_admin? %>
+      <th>Edit</th>
+      <th>Delete</th>
     <%end%>
-  </tr>
-  <tr>
   </tr>
 
 <% @memberships.each do |m| %>

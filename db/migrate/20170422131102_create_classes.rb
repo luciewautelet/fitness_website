@@ -3,6 +3,7 @@ class CreateClasses < ActiveRecord::Migration
     create_table :classes do |t|
       t.string :ctype
       t.boolean :start
+      t.integer :first_classeId
       t.datetime :date
       t.string :description
       t.integer :instructor_id

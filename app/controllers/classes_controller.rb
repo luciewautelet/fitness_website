@@ -84,17 +84,54 @@ class ClassesController < ApplicationController
         @classe = Classe.new
     end
     
-    def create
+    def newSetC
+        if !params.has_key?(:id)
+            redirect_to  classes_path
+            return
+        end
+        
+        @dates = []
+        5.times do
+          @dates << "test"
+        end
 
-        # date = Date.new(params[:classe][:date])
+        @first_classe = Classe.find_by(params["id"])
+        @classe = Classe.new
+    end
+    
+    def new_set_classes
+        if !params.has_key?(:id)
+            redirect_to  classes_path
+        end
+        @first_classe = Classe.find_by(params["id"])
+        params[:classe][:dates].each do |d|
+            @classe = Classe.new(d)
+            @classe.ctype = @fist_classe.ctype
+            @classe.description = @fist_classe.description
+            @classe.start = false
+            @classe.first_classeId = @first_classe.id
+            @classe.instructor_id = current_admin.id
+            if @classe.save
+                redirect_to  classes_path
+            else
+                flash[:error] = 'Failed to create classe!'
+                render 'new'
+            end
+        end
+    end
+    
+    def create
         @classe = Classe.new(classe_params)
         @classe.instructor_id = current_admin.id
-         #       print params[:classe][:date]
-   #     redirect_to  classes_path
-       if  @classe.save
-            redirect_to  classes_path
+        @classe.first_classeId = @classe.start ? @classe.id : -1
+        if @classe.save
+            if @classe.start == true
+                redirect_to newSetC(id: @classe.id)
+            else
+                redirect_to  classes_path
+            end
         else
-            flash[:error] = 'Failed to edit classe!'
+            flash[:error] = 'Failed to create classe!'
             render 'new'
         end
     end

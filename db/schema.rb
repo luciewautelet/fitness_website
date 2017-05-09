@@ -36,11 +36,12 @@ ActiveRecord::Schema.define(version: 20170506165537) do
   create_table "classes", force: :cascade do |t|
     t.string   "ctype"
     t.boolean  "start"
+    t.integer  "first_classeId"
     t.datetime "date"
     t.string   "description"
     t.integer  "instructor_id"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
   end
 
   create_table "contact_messages", force: :cascade do |t|
@@ -59,15 +60,6 @@ ActiveRecord::Schema.define(version: 20170506165537) do
     t.string   "caption"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "members", force: :cascade do |t|
-    t.string   "name"
-    t.string   "phone"
-    t.string   "email"
-    t.integer  "membership_no"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
   end
 
   create_table "memberships", force: :cascade do |t|

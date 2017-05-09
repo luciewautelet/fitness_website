@@ -10,9 +10,8 @@
 <%=h @membership.description %>
 </blockquote>
 
-<!--<p>Created: <i><!--%= time_ago_in_words(@membership.created_at) %> ago</i></p>-->
 
-<% if logged_in? %>
+<% if website_admin? %>
     <%= link_to 'Edit', :action => 'edit', :id => @membership.id %> |
 <% end %>
 <%= link_to 'Back', :action => nil %>
