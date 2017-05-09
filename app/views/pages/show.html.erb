@@ -1,0 +1,10 @@
+<% provide(:title, @page[:title]) %>
+<% content_for :head do %>
+<h1><%= @page[:description] %></h1>
+<%end%>
+
+<% content_for :cont do %>
+
+<%= raw @page[:content] %>
+
+<% end %>

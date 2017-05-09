@@ -1,0 +1,27 @@
+<% provide(:title, 'add set of class')%>
+<% content_for :head do %>
+<h1>New set of class</h1>
+<%end%>
+
+<% content_for :cont do %>
+
+  <p>
+    Classes type: <%= @first_classe.ctype %>
+  </p>
+  <p>
+    Description: <%= @first_classe.description %>
+  </p>  
+<!--%= form_for(@classe, :url => {:action => 'createSetC'}) do |f| %>-->
+<%= form_tag(new_set_classes_path, :method=>'post') do %>
+  <% @set_classes.each do |classe| %>
+  <%= fields_for 'classes[][]', classe do |d| %>
+      <!--<div class="field"> Date: <!--%= d.datetime_select :date %> </div>-->
+      <div class="field"> Date: <%= d.date_select :date %> </div>
+    <% end %>
+  <%end%>
+  <br/>
+  <p> <%= submit_tag "Save" , class: "btn btn-primary" %> </p>
+<% end %>
+
+<%= link_to 'Back', :action => nil %>
+<%end%>

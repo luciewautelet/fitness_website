@@ -1,0 +1,20 @@
+<% provide(:title, 'add a page')%>
+<% content_for :head do %>
+<h1>New page</h1>
+<%end%>
+
+<% content_for :cont do %>
+<%= form_for(@static_page, :url => {:action => 'create'}) do |f| %>
+   <p>
+    Title: <%= f.text_field 'title' %>
+  </p>
+  <p>
+    Description: <%= f.text_field 'description' %>
+  </p>
+  <p>
+    <%= f.submit "Create", class: "btn btn-primary" %>
+  </p>
+<% end %>
+
+<%= link_to 'Back', :action => nil %>
+<%end%>

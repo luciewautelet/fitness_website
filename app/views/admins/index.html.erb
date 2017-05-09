@@ -1,0 +1,40 @@
+<% provide(:title, "instructors") %>
+<% content_for :head do %>
+<h1>Listing instructors and admins</h1>
+<%end%>
+
+<% content_for :cont do %>
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th>Name</th>
+    <th>Created</th>
+    <th>Updated</th>
+    <th>Is website admin?</th>
+    <th>Delete</th>
+  </tr>
+  </thead>
+
+  <% @admins.each do |a| %>
+    <tbody>
+    <tr>
+      <td><%= a.name %></td>
+      <td><%=a.created_at.to_time.strftime("%A, %l:%M %p")%></td>
+      <td><%=a.updated_at.to_time.strftime("%A, %l:%M %p")%></td>
+      <td><%=a.admin_all%></td>
+      <% if current_admin.id != a.id %>
+          <td><%= link_to 'Delete', a, :confirm => 'Are you sure?', :method => :delete %></td>
+      <% else %>
+          <td> Cant delete yourself </td>
+      <% end %>
+    </tr>
+    </tbody>
+  <% end %>
+</table>
+
+<br />
+
+<% if website_admin? %>
+    <%= link_to 'Add a fake booking', :action => 'new' %>
+<% end %>
+<%end%>

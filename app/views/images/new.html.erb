@@ -1,0 +1,28 @@
+<% provide(:title, 'add a image')%>
+<% content_for :head do %>
+<h1>New image</h1>
+<%end%>
+
+<% content_for :cont do %>
+<%= form_for(@image, :url => {:action => 'create'}) do |f| %>
+ <p>
+    Gallery name:
+    <% options = options_from_collection_for_select(@list, 'title', 'title') %>
+    <%= f.select :gallery, options %>
+  </p>
+  <p>
+    File: <%= f.file_field 'filename' %>
+  </p>
+  <p>
+    Alt-text: <%= f.text_field :alt_text %>
+  </p>
+  <p>
+    Caption: <%= f.text_area :caption %>
+  </p>
+  <p>
+    <%= f.submit "Create", class: "btn btn-primary" %>
+  </p>
+<% end %>
+
+<%= link_to 'Back', :action => nil %>
+<%end%>
