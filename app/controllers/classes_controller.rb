@@ -90,13 +90,12 @@ class ClassesController < ApplicationController
             return
         end
         
-        @dates = []
+        @set_classes = []
         5.times do
-          @dates << ""
+          @set_classes << Classe.new
         end
 
         @first_classe = Classe.find_by(params["id"])
-        @classe = Classe.new
     end
     
     def createSetC
@@ -104,8 +103,11 @@ class ClassesController < ApplicationController
             redirect_to  classes_path
         end
         @first_classe = Classe.find_by(params["id"])
-        params[:dates].each do |d|
-            @classe = Classe.new(d)
+        params[:classes].each do |d|
+            print("_____")
+            print(d)
+            print("_____")
+            @classe = Classe.new()
             @classe.ctype = @fist_classe.ctype
             @classe.description = @fist_classe.description
             @classe.start = false
@@ -162,6 +164,7 @@ class ClassesController < ApplicationController
     end
     
     private
+        
         def classe_params
             params.require(:classe).permit(:ctype, :start, :date, :description,
                                     :instructor_id)
