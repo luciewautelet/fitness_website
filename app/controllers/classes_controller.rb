@@ -92,19 +92,19 @@ class ClassesController < ApplicationController
         
         @dates = []
         5.times do
-          @dates << "test"
+          @dates << ""
         end
 
         @first_classe = Classe.find_by(params["id"])
         @classe = Classe.new
     end
     
-    def new_set_classes
+    def createSetC
         if !params.has_key?(:id)
             redirect_to  classes_path
         end
         @first_classe = Classe.find_by(params["id"])
-        params[:classe][:dates].each do |d|
+        params[:dates].each do |d|
             @classe = Classe.new(d)
             @classe.ctype = @fist_classe.ctype
             @classe.description = @fist_classe.description
@@ -126,7 +126,7 @@ class ClassesController < ApplicationController
         @classe.first_classeId = @classe.start ? @classe.id : -1
         if @classe.save
             if @classe.start == true
-                redirect_to newSetC(id: @classe.id)
+                redirect_to new_set_classes_path(id: @classe.id)
             else
                 redirect_to  classes_path
             end
