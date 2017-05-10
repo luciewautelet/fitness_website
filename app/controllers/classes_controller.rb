@@ -8,7 +8,7 @@ class ClassesController < ApplicationController
     def index
         @cl = StaticPage.where("LOWER(title) = ?", "classes")
         @page = @cl[0]
-        if @pages
+        if @page
             @images = Image.select("filename").where("LOWER(gallery) = ?", "classes")
             @img = []
             @images.each do |i|
