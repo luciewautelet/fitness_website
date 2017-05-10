@@ -9,7 +9,7 @@ class ContactMessagesController < ApplicationController
         @cl = StaticPage.where("LOWER(title) = ?", "contact")
         @page = @cl[0]
         if @pages
-            @images = Image.select("filename").where("LOWER(gallery) = ?", @page[:gallery])
+            @images = Image.select("filename").where("LOWER(gallery) = ?", "contact")
             @img = []
             @images.each do |i|
                 @img.push(i[:filename])

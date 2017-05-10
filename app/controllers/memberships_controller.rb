@@ -6,7 +6,7 @@ class MembershipsController < ApplicationController
         @cl = StaticPage.where("LOWER(title) = ?", "memberships")
         @page = @cl[0]
             if @pages
-            @images = Image.select("filename").where("LOWER(gallery) = ?", @page[:gallery])
+            @images = Image.select("filename").where("LOWER(gallery) = ?", "memberships")
             @img = []
             @images.each do |i|
                 @img.push(i[:filename])

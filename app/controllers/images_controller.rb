@@ -42,17 +42,10 @@ class ImagesController < ApplicationController
     end
     
     def update
+        @list = StaticPage.all
+        @list += Page.all
         @image = Image.find params[:id]
-        
-        uploaded_io = params[:image][:filename]
-        File.open(Rails.root.join('app', 'assets', 'images', 
-                                uploaded_io.original_filename), 'wb') do |file|
-                    file.write(uploaded_io.read)
-        end
-        
-        params[:image][:filename] = uploaded_io.original_filename
-        
-        if @image.update_attributes(image_params)
+        if @image.update_attributes(upload_image_params)
             redirect_to images_path
         else
             flash[:error] = 'Failed to edit image!'
@@ -72,6 +65,9 @@ class ImagesController < ApplicationController
     end
     
     private
+        def upload_image_params
+            params.require(:image).permit(:gallery, :alt_text, :caption)
+        end
         def image_params
             params.require(:image).permit(:gallery, :filename, :alt_text,
                                             :caption)

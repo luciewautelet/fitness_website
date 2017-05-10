@@ -9,7 +9,7 @@ class ClassesController < ApplicationController
         @cl = StaticPage.where("LOWER(title) = ?", "classes")
         @page = @cl[0]
         if @pages
-            @images = Image.select("filename").where("LOWER(gallery) = ?", @page[:gallery])
+            @images = Image.select("filename").where("LOWER(gallery) = ?", "classes")
             @img = []
             @images.each do |i|
                 @img.push(i[:filename])

@@ -11,10 +11,7 @@
     <%= f.select :gallery, options %>
   </p>
   <p>
-    Filename: <%= f.text_field :filename %>
-  </p>
-  <p>
-    Alt-text: <%= f.text_field :alt_text, :placeholder => "minimum length of 15 characters" %>
+    Alt-text: <%= f.text_field :alt_text, :placeholder => "maximum length of 15 characters" %>
   </p>
   <p>
     Caption: <%= f.text_area :caption , :placeholder => "must contain between 2 and 50 characters"%>
