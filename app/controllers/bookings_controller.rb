@@ -3,6 +3,15 @@ class BookingsController < ApplicationController
     
     def index
         @bookings = Booking.all
+        @cl = StaticPage.where("LOWER(title) = ?", "bookings")
+        @page = @cl[0]
+        if @page
+            @images = Image.select("filename").where("LOWER(gallery) = ?", "bookings")
+            @img = []
+            @images.each do |i|
+                @img.push(i[:filename])
+            end
+        end
     end
     
     def show
