@@ -9,7 +9,7 @@ class PagesController < ApplicationController
     @page = Page.where("id = ?",  params[:id])
     if @page
         @page = @page[0]
-        @images = Image.select("filename").where("LOWER(gallery) = ?", lowercase(@page[:title]))
+        @images = Image.select("filename").where("LOWER(gallery) = ?", @page[:title].downcase)
         @img = []
         @images.each do |i|
             @img.push(i[:filename])
