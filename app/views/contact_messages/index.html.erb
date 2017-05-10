@@ -1,9 +1,9 @@
 <% provide(:title, "message list") %>
 <% content_for :head do%>
 <h1>
-  <% if @page %>
-  <% @page[:title]%>
-  <%end%>
+    <% if @page%>
+    <%= @page[:title]%>
+    <%end%>
 </h1>
 <%end%>
 
