@@ -6,10 +6,10 @@
 <% content_for :cont do %>
 
   <p>
-    Classes type: <%= @first_classe.ctype %>
+    Classes type: <%= @first_classe.ctype , :placeholder => "minimum length of 2 characters"%>
   </p>
   <p>
-    Description: <%= @first_classe.description %>
+    Description: <%= @first_classe.description , :placeholder => "must contain between 5 and 200 characters"%>
   </p>  
 <%= form_tag(new_set_classes_path, :method=>'post') do %>
   <% @set_classes.each do |classe| %>

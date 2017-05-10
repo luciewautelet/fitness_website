@@ -14,10 +14,10 @@
     File: <%= f.file_field 'filename' %>
   </p>
   <p>
-    Alt-text: <%= f.text_field :alt_text %>
+    Alt-text: <%= f.text_field :alt_text , :placeholder => "minimum length of 15 characters"%>
   </p>
   <p>
-    Caption: <%= f.text_area :caption %>
+    Caption: <%= f.text_area :caption , :placeholder => "must contain between 2 and 50 characters"%>
   </p>
   <p>
     <%= f.submit "Create", class: "btn btn-primary" %>

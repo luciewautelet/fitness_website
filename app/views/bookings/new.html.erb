@@ -7,10 +7,10 @@
 <% content_for :cont do %>
 <%= form_for(@booking, :url => {:action => 'create'}) do |f| %>
   <p>
-    Name: <%= f.text_field 'name' %>
+    Name: <%= f.text_field 'name', :placeholder => "minimum length of 2 characters" %>
   </p>
   <p>
-    Phone number: <%= f.telephone_field(:phone) %>
+    Phone number: <%= f.telephone_field(:phone, :placeholder => "must contain between 10 and 15 characters") %>
   </p>
   <p>
     Email Address: <%= f.email_field(:email) %>

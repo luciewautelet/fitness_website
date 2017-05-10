@@ -14,7 +14,10 @@
 
 <p>
     <% tnow = Time.now %>
-    <% if @classe.first_classeId != -1 && if get_start_date(@classe.first_classeId) > tnow %>
+    <%= tnow %>
+    <%= @classe.date %>
+    <% if @classe.first_classeId && @classe.first_classeId != -1 &&
+                            if get_start_date(@classe.first_classeId) > tnow %>
             <%= link_to 'Book SET of 6 classes', new_booking_path(@classe.id), class: "btn btn-primary"  %>
     <% else if @classe.date > tnow %>
             <%= link_to 'Book it', new_booking_path(@classe.id), class: "btn btn-primary"  %>
