@@ -42,7 +42,7 @@ class StaticPagesController < ApplicationController
         @static_page = StaticPage.find params[:id]
         @static_page.gallery = @static_page.title
         if @static_page.update_attributes(static_page_params)
-            render template: "#{params[:title]}/index.html.erb"
+            redirect_to root_path
         else
             flash[:error] = 'Failed to edit page!'
             render :edit
