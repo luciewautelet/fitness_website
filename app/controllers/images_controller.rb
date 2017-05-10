@@ -20,7 +20,7 @@ class ImagesController < ApplicationController
         @image = Image.new(image_params)
         
         uploaded_io = params[:image][:filename]
-        File.open(Rails.root.join('app', 'assets', 'images', 
+        File.open(Rails.root.join('public', 'images', 
                                 uploaded_io.original_filename), 'wb') do |file|
                     file.write(uploaded_io.read)
         end
