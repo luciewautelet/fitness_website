@@ -1,6 +1,18 @@
 <% provide(:title, "bookings") %>
-<% content_for :head do %>
-<h1>Listing bookings</h1>
+<% content_for :head do%>
+<h1>
+    <% if @page%>
+    <%= @page[:title]%>
+    <%end%>
+</h1>
+<%end%>
+
+<% content_for :desc do%>
+<h1>
+    <% if @page%>
+    <%= @page[:description]%>
+    <%end%>
+</h1>
 <%end%>
 
 <% content_for :cont do %>
