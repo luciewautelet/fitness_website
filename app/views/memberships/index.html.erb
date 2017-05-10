@@ -16,6 +16,8 @@
 <%end%>
 
 <% content_for :img do %>
+    <%= @img.each do |i| %>
+    <%end%>
     <% if @img%>
     <%= carousel_for(@img)%>
     <%end%>
