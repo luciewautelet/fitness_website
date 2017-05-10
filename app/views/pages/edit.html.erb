@@ -7,13 +7,13 @@
 
 <%= form_for(@page, :url => {:action => 'update', :id => @page.id}) do |f| %>
    <p>
-    Title: <%= f.text_field 'title' %>
+    Title: <%= f.text_field 'title' , :placeholder => "between 2 and 15 characters"%>
   </p>
   <p>
-    Description: <%= f.text_field 'description' %>
+    Description: <%= f.text_field 'description', :placeholder => "between 5 and 30 characters" %>
   </p>
   <p>
-    Content: <%= f.text_area 'content' %>
+    Content: <%= f.text_area 'content' , :placeholder => "minimum 5 characters long" %>
   </p>
   <p>
     <%= f.submit "Edit", class: "btn btn-primary" %>

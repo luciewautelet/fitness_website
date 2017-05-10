@@ -76,7 +76,7 @@ class ClassesController < ApplicationController
     
     def show
         @classe = Classe.find params[:id]
-        @instructor = Admin.find_by(@classe.instructor_id)
+        @instructor = Admin.find @classe.instructor_id 
         @bookings = Booking.find_by_classe_type(@classe.ctype)
     end
     

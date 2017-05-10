@@ -45,7 +45,13 @@
         <td><%=c.date.to_time.strftime("%l:%M %p")%></td>
     <td><%= link_to c.ctype, :action => 'show', :id => c.id %></td>
     <td><%=c.description%></td>
-    <td><%= def_class_start c %></td>
+    <td>
+        <% if c.first_classeId && c.first_classeId != -1 %>
+            <%= get_start_date(c.first_classeId).strftime("%a, %d %b %Y %l:%M %p") %>
+        <% else %>
+            Unique classe
+        <% end %>
+    </td>
     <% if website_admin? %>
         <td> <%= link_to 'Edit', :action => 'edit', :id => c.id %></td>
         <td><%= link_to 'Delete', c, :confirm => 'Are you sure?', :method => :delete %></td>

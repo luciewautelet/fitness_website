@@ -21,6 +21,8 @@
   <p>
     Membership ID <%= f.number_field :membership_id %>
   </p>
+  
+  <%= hidden_field_tag :id, @classe.id %>
   <p>
     <%= f.submit "Save", class: "btn btn-primary" %>
   </p>

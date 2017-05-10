@@ -7,10 +7,10 @@
 
 <%= form_for(@static_page, :url => {:action => 'update', :id => @static_page.id}) do |f| %>
    <p>
-    Title: <%= f.text_field 'title' %>
+    Title: <%= f.text_field 'title', :placeholder => "between 1 and 15 characters" %>
   </p>
   <p>
-    Description: <%= f.text_field 'description' %>
+    Description: <%= f.text_field 'description', :placeholder => "between 5 and 50 characters" %>
   </p>
   <p>
     <%= f.submit "Edit", class: "btn btn-primary" %>

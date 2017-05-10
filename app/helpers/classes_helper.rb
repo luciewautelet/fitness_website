@@ -55,5 +55,10 @@ module ClassesHelper
         end
         return false
     end
+    
+    def get_start_date(id)
+        @classe = Classe.find id
+        return @classe.date
+    end
 end
 

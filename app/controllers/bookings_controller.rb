@@ -10,15 +10,15 @@ class BookingsController < ApplicationController
     end
     
     def new
-        @classe = Classe.find_by(params["format"])
+        print('in new; get classe id =')
+        print(params["format"])
+        print "*****"
+        @classe = Classe.find(params["format"])
         @booking = Booking.new
     end
     
     def create
-        @classe = Classe.find_by(params["format"])
-        print("-----")
-        print(@classe.first_classeId)
-        print("--------")
+        @classe = Classe.find(params["id"])
         if @classe.first_classeId != -1
             @classes = Classe.where "first_classeId = ?", @classe.first_classeId
             @classes.each do |c|
@@ -30,6 +30,7 @@ class BookingsController < ApplicationController
                     render 'new'
                 end
             end
+            redirect_to classes_path
         else
             @booking = Booking.new(booking_params)
             @booking.classe_type = @classe.ctype

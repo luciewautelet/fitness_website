@@ -36,11 +36,11 @@ class PagesController < ApplicationController
     end
     
     def edit
-        @page = page.find params[:id]
+        @page = Page.find params[:id]
     end
     
     def update
-        @page = page.find params[:id]
+        @page = Page.find params[:id]
         @page.gallery = @page.title
         if @page.update_attributes(page_params)
             redirect_to pages_path

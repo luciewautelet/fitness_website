@@ -1,5 +1,5 @@
 class StaticPagesController < ApplicationController
-    before_action :logged_in_admin, only: [:create, :update, :destroy]
+    before_action :logged_in_admin, only: [:index, :create, :update, :destroy]
     
     def home
         @static = StaticPage.where("LOWER(title) = ?", "home")
@@ -13,16 +13,17 @@ class StaticPagesController < ApplicationController
     end
     
     def index
-        redirect_to new_static_page_path
+        @static_pages = StaticPage.all
+        @pages = Page.all
     end
     
-    def show
-      if valid_page?
-        redirect_to "#{params[:title]}/index.html.erb"
-      else
-        render file: "public/404.html", status: :not_found
-      end
-    end
+    # def show
+    #   if valid_page?
+    #     redirect_to "#{params[:title]}/index.html.erb"
+    #   else
+    #     render file: "public/404.html", status: :not_found
+    #   end
+    # end
     
     # TODO supprimer après avoir mis en DB !
     def new
@@ -43,11 +44,11 @@ class StaticPagesController < ApplicationController
     # !!!!! FIN TODO
     
     def edit
-        @static_page = page.find params[:id]
+        @static_page = StaticPage.find params[:id]
     end
     
     def update
-        @static_page = page.find params[:id]
+        @static_page = StaticPage.find params[:id]
         @static_page.gallery = @static_page.title
         if @static_page.update_attributes(static_page_params)
             render template: "#{params[:title]}/index.html.erb"

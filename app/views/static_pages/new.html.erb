@@ -6,10 +6,10 @@
 <% content_for :cont do %>
 <%= form_for(@static_page, :url => {:action => 'create'}) do |f| %>
    <p>
-    Title: <%= f.text_field 'title' %>
+    Title: <%= f.text_field 'title', :placeholder => "between 1 and 15 characters" %>
   </p>
   <p>
-    Description: <%= f.text_field 'description' %>
+    Description: <%= f.text_field 'description', :placeholder => "between 5 and 50 characters" %>
   </p>
   <p>
     <%= f.submit "Create", class: "btn btn-primary" %>
