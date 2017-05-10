@@ -11,14 +11,13 @@
   <p>
     Description: <%= @first_classe.description %>
   </p>  
-<!--%= form_for(@classe, :url => {:action => 'createSetC'}) do |f| %>-->
 <%= form_tag(new_set_classes_path, :method=>'post') do %>
   <% @set_classes.each do |classe| %>
-  <%= fields_for 'classes[][]', classe do |d| %>
-      <!--<div class="field"> Date: <!--%= d.datetime_select :date %> </div>-->
-      <div class="field"> Date: <%= d.date_select :date %> </div>
+    <%= fields_for 'classes[][]', classe do |d| %>
+      <div class="field"> Date: <%= d.datetime_select :date %> </div>
     <% end %>
   <%end%>
+  <%= hidden_field_tag :id, @first_classe.id %>
   <br/>
   <p> <%= submit_tag "Save" , class: "btn btn-primary" %> </p>
 <% end %>

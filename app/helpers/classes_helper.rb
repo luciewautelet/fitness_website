@@ -33,7 +33,6 @@ module ClassesHelper
 
         while (i < 7)
             if days[i][1] != ""
-                print "heyyy"
 
                 tmp = "2017-" + days[i][1] + "-" + days[i][2]
                 print tmp
@@ -44,7 +43,6 @@ module ClassesHelper
             i += 1
         end
         prev = Date.(Date.new("2017", days[0][2], days[0][1]) - 7)
-        print "hello" + prev
         return prev;
         
     end

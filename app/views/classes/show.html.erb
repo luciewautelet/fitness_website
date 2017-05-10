@@ -12,7 +12,13 @@
 
 <p>When?: <i><%= @classe.date.to_time.strftime('%A, %d %b %Y %l:%M %p') %></i></p>
 
-<p><%= link_to 'Book it', new_booking_path(@classe.id), class: "btn btn-primary"  %></p>
+<p>
+    <% if @classe.first_classeId != -1 %>
+        <%= link_to 'Book SET of 6 classes', new_booking_path(@classe.id), class: "btn btn-primary"  %>
+    <% else %>
+        <%= link_to 'Book it', new_booking_path(@classe.id), class: "btn btn-primary"  %>
+    <% end %>
+</p>
 
 <% if website_admin? %>
     <%= link_to 'Edit', :action => 'edit', :id => @classe.id %> |

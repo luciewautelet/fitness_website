@@ -16,15 +16,31 @@ class BookingsController < ApplicationController
     
     def create
         @classe = Classe.find_by(params["format"])
-        @booking = Booking.new(booking_params)
-        @booking.classe_type = @classe.ctype
-        @booking.cdate = @classe.date
-        
-        if @booking.save
-            redirect_to classes_path
+        print("-----")
+        print(@classe.first_classeId)
+        print("--------")
+        if @classe.first_classeId != -1
+            @classes = Classe.where "first_classeId = ?", @classe.first_classeId
+            @classes.each do |c|
+                @booking = Booking.new(booking_params)
+                @booking.classe_type = c.ctype
+                @booking.cdate = c.date
+                if !@booking.save
+                    flash[:error] = 'Failed to edit booking!'
+                    render 'new'
+                end
+            end
         else
-            flash[:error] = 'Failed to edit booking!'
-            render 'new'
+            @booking = Booking.new(booking_params)
+            @booking.classe_type = @classe.ctype
+            @booking.cdate = @classe.date
+            
+            if @booking.save
+                redirect_to classes_path
+            else
+                flash[:error] = 'Failed to edit booking!'
+                render 'new'
+            end
         end
     end
     

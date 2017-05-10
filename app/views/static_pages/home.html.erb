@@ -1,6 +1,9 @@
 <% provide(:title, 'Home') %>
 <% content_for :head do %>
-<h1><%= @static_pages[:title]%></h1>
+<h1>
+    <% if @static_pages %>
+    <%= @static_pages[:title]%></h1>
+    <%end%>
 <%end%>
 
 <% content_for :img do %>
@@ -13,7 +16,9 @@
 
 <% content_for :desc do %>
 <p>
+    <% if @static_pages %>
     <%= @static_pages[:description]%>
+    <%end%>
 </p>
 <%end%>
 <h2>hello</h2>

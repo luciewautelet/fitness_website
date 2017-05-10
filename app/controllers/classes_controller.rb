@@ -86,8 +86,7 @@ class ClassesController < ApplicationController
     
     def newSetC
         if !params.has_key?(:id)
-            redirect_to  classes_path
-            return
+            redirect_to classes_path and return
         end
         
         @set_classes = []
@@ -95,40 +94,39 @@ class ClassesController < ApplicationController
           @set_classes << Classe.new
         end
 
-        @first_classe = Classe.find_by(params["id"])
+        @first_classe = Classe.find(params["id"])
     end
     
     def createSetC
-        if !params.has_key?(:id)
-            redirect_to  classes_path
-        end
-        @first_classe = Classe.find_by(params["id"])
+        @first_classe = Classe.find(params[:id])
         params[:classes].each do |d|
-            print("_____")
-            print(d)
-            print("_____")
             @classe = Classe.new()
-            @classe.ctype = @fist_classe.ctype
-            @classe.description = @fist_classe.description
+            @classe.date = Time.new(d['date(1i)'], d['date(2i)'], d['date(3i)'],
+                                d['date(4i)'], d['date(5i)'])
+            @classe.ctype = @first_classe.ctype
+            @classe.description = @first_classe.description
             @classe.start = false
             @classe.first_classeId = @first_classe.id
             @classe.instructor_id = current_admin.id
-            if @classe.save
-                redirect_to  classes_path
-            else
+            if !@classe.save
                 flash[:error] = 'Failed to create classe!'
-                render 'new'
+                render 'newSetC'
             end
         end
+        redirect_to classes_path and return
     end
     
     def create
         @classe = Classe.new(classe_params)
         @classe.instructor_id = current_admin.id
-        @classe.first_classeId = @classe.start ? @classe.id : -1
+        @classe.first_classeId = -1
         if @classe.save
             if @classe.start == true
-                redirect_to new_set_classes_path(id: @classe.id)
+                @classe.update_attributes(:first_classeId => @classe.id)
+                print("in save; id=")
+                print(@classe.first_classeId)
+                print("____")
+                redirect_to new_set_classes_path(id: @classe.id) and return
             else
                 redirect_to  classes_path
             end
@@ -154,6 +152,12 @@ class ClassesController < ApplicationController
     
     def destroy
         @classe = Classe.find params[:id]
+        if @classe.first_classeId != -1
+            @classes = Classe.where "first_classeId = ?", @classe.first_classeId
+            @classes.each do |c|
+                @classe.first_classeId = -1
+            end
+        end
         if @classe.delete
             flash[:notice] = 'Classe deleted!'
             redirect_to classes_path
