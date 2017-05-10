@@ -9,14 +9,12 @@ class PagesController < ApplicationController
     @page = Page.where("id = ?",  params[:id])
     if @page
         @page = @page[0]
-        print @page
         @images = Image.select("filename").where("LOWER(gallery) = ?", @page[:gallery])
         @img = []
         @images.each do |i|
             @img.push(i[:filename])
         end
     end
-   #     render 'shared/404', :status => 404 if @page.nil?
     end
     
     

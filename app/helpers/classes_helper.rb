@@ -35,7 +35,6 @@ module ClassesHelper
             if days[i][1] != ""
 
                 tmp = "2017-" + days[i][1] + "-" + days[i][2]
-                print tmp
                 prev = Date.strptime(tmp, "%Y-%d-%m")
                 prev = prev - (7 + i)
                 return prev;

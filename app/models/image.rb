@@ -1,5 +1,4 @@
 class Image < ActiveRecord::Base
-    # has_one :page or :static_page
     
     validates :gallery, presence: true, length: { minimum: 1, maximum: 20}
     validates :filename,  presence: true

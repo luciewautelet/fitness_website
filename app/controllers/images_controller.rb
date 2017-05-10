@@ -36,11 +36,22 @@ class ImagesController < ApplicationController
     end
     
     def edit
+        @list = StaticPage.all
+        @list += Page.all
         @image = Image.find params[:id]
     end
     
     def update
         @image = Image.find params[:id]
+        
+        uploaded_io = params[:image][:filename]
+        File.open(Rails.root.join('app', 'assets', 'images', 
+                                uploaded_io.original_filename), 'wb') do |file|
+                    file.write(uploaded_io.read)
+        end
+        
+        params[:image][:filename] = uploaded_io.original_filename
+        
         if @image.update_attributes(image_params)
             redirect_to images_path
         else

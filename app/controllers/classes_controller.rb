@@ -123,9 +123,6 @@ class ClassesController < ApplicationController
         if @classe.save
             if @classe.start == true
                 @classe.update_attributes(:first_classeId => @classe.id)
-                print("in save; id=")
-                print(@classe.first_classeId)
-                print("____")
                 redirect_to new_set_classes_path(id: @classe.id) and return
             else
                 redirect_to  classes_path

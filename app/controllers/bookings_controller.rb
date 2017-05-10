@@ -10,9 +10,6 @@ class BookingsController < ApplicationController
     end
     
     def new
-        print('in new; get classe id =')
-        print(params["format"])
-        print "*****"
         @classe = Classe.find(params["format"])
         @booking = Booking.new
     end
